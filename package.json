@@ -1,0 +1,37 @@
+{
+  "name": "carteirada_back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --pretty --transpile-only src/server.ts",
+    "compile": "npx tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedroldm/carteirada_back-end.git"
+  },
+  "author": "Pedro Lucas Damasceno",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pedroldm/carteirada_back-end/issues"
+  },
+  "homepage": "https://github.com/pedroldm/carteirada_back-end#readme",
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.17",
+    "axios": "^1.4.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "pg": "^8.11.3",
+    "sequelize": "^6.32.1"
+  }
+}
