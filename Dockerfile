@@ -7,7 +7,7 @@ ENV POSTGRES_DB api_db
 # Replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-# make sure apt is up to date
+# Make sure apt is up to date
 RUN apt-get update --fix-missing
 RUN apt-get install -y curl
 RUN apt-get install -y build-essential libssl-dev
@@ -25,5 +25,7 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | b
 
 RUN apt-get install npm -y
     
-RUN git clone https://github.com/pedroldm/carteirada_back-end.git
-RUN cd /carteirada_back-end && npm install
+RUN git clone https://github.com/pedroldm/coinlab-back-end.git
+RUN cd /coinlab-back-end && npm install && chmod +x start.sh
+
+CMD [ "./start.sh" ]
