@@ -1,1 +1,1 @@
-npm run dev
+cd /coinlab-back-end && npm run dev
