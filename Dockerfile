@@ -26,6 +26,6 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | b
 RUN apt-get install npm -y
     
 RUN git clone https://github.com/pedroldm/coinlab-back-end.git
-RUN cd /coinlab-back-end && npm install && chmod +x start.sh
+RUN chmod +x coinlab-back-end/start.sh
 
-CMD [ "./start.sh" ]
+CMD [ "coinlab-back-end/start.sh" ]
