@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import User from '../models/User';
+import User from '../models/user';
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
         const users = await User.findAll();
-        res.json(users);
+        return users;
     } catch (error) {
-        res.status(500).json({ error: "Error consulting users" });
+        return { error: "Error consulting users" };
     }
 };

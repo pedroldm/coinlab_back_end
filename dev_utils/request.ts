@@ -20,7 +20,7 @@ async function createUser() {
 
 async function getAllUsers() {
     try {
-        const response = await axios.get(`${baseUrl}/users`);
+        const response = await axios.get(`${baseUrl}/users/all`);
         console.log('Status: ' + response.status);
         console.log(response.data);
     } catch (error) {

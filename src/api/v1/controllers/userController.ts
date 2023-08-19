@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import registerUser from '../services/registerUser';
 import { UniqueConstraintError } from 'sequelize';
 import { getAllUsers } from '../services/getAllUsers';
-import User from '../models/User';
+import User from '../models/user';
 
 class UserController {
     async createUser(req: Request, res: Response) {
