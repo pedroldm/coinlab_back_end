@@ -1,18 +1,18 @@
 import { Request, Response } from 'express';
-import registerUser from '../services/registerUser';
-import User from '../models/user';
+import { RegisterUser } from '../services/RegisterUser';
+import User from '../models/User';
 
 class UserController {
     async createUser(req: Request, res: Response) {
         try {
             const { username, email, password } = req.body;
-            const newUser = await registerUser.createUser(username, email, password);
+            const newUser = await RegisterUser.register(username, email, password);
             if(newUser instanceof User) {
                 res.status(200).json(newUser);
             }
             else {
                 if(newUser.error) {
-                    res.status(newUser.status).json(newUser);
+                    res.status(newUser.status).json({ error : newUser.error });
                 }
                 else {
                     res.status(500).json({ error: "Unkown error. Please contact the administrators." })

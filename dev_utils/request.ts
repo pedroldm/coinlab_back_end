@@ -3,19 +3,19 @@ import dotenv from 'dotenv';
 import { faker } from '@faker-js/faker';
 dotenv.config({ path: __dirname + '/../.env' });
 
-const baseUrl = `http://localhost:${process.env.PORT}`;
+const baseUrl = `http://${process.env.API_HOST}:${process.env.PORT}`;
 
 class Request {
     private static debug: boolean = true;
-    private baseUrl = `http://localhost:${process.env.PORT}`;
+    private baseUrl = `http://${process.env.API_HOST}:${process.env.PORT}`;
 
     public static async createUser(username: string = 'test_user', email: string = 'testuser@example.com', password: string = 'password'): Promise<void> {
         try {
             const response = await axios.post(`${baseUrl}/users/create`, {
-                username: username,
                 email: email,
                 password: password
             });
+            console.log(response)
             if(this.debug)
                 this.logResponseData(response);
         } catch (error) {
@@ -55,6 +55,6 @@ class Request {
     }
 }
 
-Request.createUser('user123', 'asodhasdiuh@gmail.com', 'pass');
+Request.createUser('user123', 'asodhasdiuh@gmail', 'pass');
 //Request.getAllUsers();
 //Request.createFakerUser(1);
