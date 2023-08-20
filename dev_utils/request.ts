@@ -12,6 +12,7 @@ class Request {
     public static async createUser(username: string = 'test_user', email: string = 'testuser@example.com', password: string = 'password'): Promise<void> {
         try {
             const response = await axios.post(`${baseUrl}/users/create`, {
+                username: username,
                 email: email,
                 password: password
             });
@@ -49,12 +50,27 @@ class Request {
         }
     }
 
+    public static async loginUser(username: string, email: string, password: string) {
+        try {
+            const response = await axios.post(`${baseUrl}/users/login`, {
+                username: username,
+                email: email,
+                password: password
+            });
+            if(this.debug)
+                this.logResponseData(response);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     private static logResponseData(response: AxiosResponse<any, any>) {
         console.log("Status Code: " + response.status);
         console.log(response.data);
     }
 }
 
-Request.createUser('user123', 'asodhasdiuh@gmail', 'pass');
+//Request.createUser('user123', 'asodhasdiuh@gmail.com', 'pass');
 //Request.getAllUsers();
 //Request.createFakerUser(1);
+Request.loginUser('userddddd123', 'asodhasdiuh@gmail.com', 'pass');

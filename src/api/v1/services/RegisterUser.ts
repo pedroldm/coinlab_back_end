@@ -1,6 +1,7 @@
 import User from '../models/User';
 import { UniqueConstraintError } from 'sequelize';
 import bcrypt from 'bcrypt';
+import { RegisterError } from '../../../exceptions/RegisterError';
 
 export class RegisterUser {
     static async register(username: string, email: string, password: string) {
@@ -11,9 +12,9 @@ export class RegisterUser {
         } catch (error) {
             if (error instanceof UniqueConstraintError) {
                 const errorMessage = this.getErrorMessageForViolatedFields(error.fields);
-                return { status: 409, error: errorMessage };
+                throw new RegisterError(errorMessage, 409);
             } else {
-                return { status: 500, error: "An error occurred while creating the user. Please try again later." };
+                throw new RegisterError("Unkown error. Please contact the administrators.", 500);
             }
         }
     }
@@ -27,5 +28,4 @@ export class RegisterUser {
             return "Duplicate entry found";
         }
     }
-
 }

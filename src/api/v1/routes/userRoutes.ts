@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get('/all', userController.getAllUsers);
 router.post('/create', fieldsVerification(["username", "email", "password"]), validEmailVerify, userController.createUser);
+router.post('/login', fieldsVerification(["password"]), userController.login);
 
 export default router;
