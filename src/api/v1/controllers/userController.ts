@@ -22,26 +22,25 @@ class UserController {
         }
     }
 
-    async getAllUsers(req: Request, res: Response) {
-        try {
-            const allUsers = await User.findAll();
-            res.status(200).json(allUsers);
-        } catch (error) {
-            res.status(500).json({ error: "An error occurred while consulting users. Pleasy try again later." });
-        }
-    }
-
     async login(req: Request, res: Response) {
         try {
             const { username, email, password } = req.body;
             const JWToken = await LoginUser.login(username, email, password);
-            console.log(JWToken);
             res.status(200).json({ token: JWToken })
         } catch (error) {
             if(error instanceof AuthenticationError)
                 res.status(error.statusCode).json({ error: error.message })
             else
                 res.status(500).json({ error: "Unkown error. Please contact the administrators." })
+        }
+    }
+
+    async getAllUsers(req: Request, res: Response) {
+        try {
+            const allUsers = await User.findAll();
+            res.status(200).json(allUsers);
+        } catch (error) {
+            res.status(500).json({ error: "An error occurred while consulting users. Pleasy try again later." });
         }
     }
 }

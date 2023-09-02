@@ -64,13 +64,40 @@ class Request {
         }
     }
 
+    public static async registerAsset(username: string, ticker: string, quantity: number, price: number) {
+        try {
+            const response = await axios.post(`${baseUrl}/assets/create`, {
+                username: username,
+                ticker: ticker,
+                quantity: quantity,
+                price: price
+            })
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    public static async consultAssets(username: string) {
+        try {
+            const response = await axios.post(`${baseUrl}/assets/userAssets`, {
+                username: username
+            })
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     private static logResponseData(response: AxiosResponse<any, any>) {
         console.log("Status Code: " + response.status);
         console.log(response.data);
     }
 }
 
-//Request.createUser('user123', 'asodhasdiuh@gmail.com', 'pass');
+//Request.createUser('lucasfvpeterrusso', 'peter_russo@gmail.com', 'peter_russo');
 //Request.getAllUsers();
 //Request.createFakerUser(1);
-Request.loginUser('userddddd123', 'asodhasdiuh@gmail.com', 'pass');
+//Request.registerAsset("Mozell23", "BRSA3", 5, 10);
+Request.consultAssets("Mozdell23");
+//Request.loginUser('userddddd123', 'asodhasdiuh@gmail.com', 'pass');
